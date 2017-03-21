@@ -190,7 +190,7 @@ namespace MonoShooterTest
                         GraphicsDevice.PresentationParameters.BackBufferWidth + 10));
                     ShootingSound.Play(0.8f, 1,0);
                 }
-                if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Mouse.GetState().LeftButton == ButtonState.Pressed) && gameTime.TotalGameTime.TotalMilliseconds - MissileLastShot > 1000)
+                if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Mouse.GetState().LeftButton == ButtonState.Pressed) && gameTime.TotalGameTime.TotalMilliseconds - MissileLastShot > 500)
                 {
                     MissileLastShot = (int)gameTime.TotalGameTime.TotalMilliseconds;
                     MissileList.Add(new Missile((int)gameTime.TotalGameTime.TotalMilliseconds,
@@ -254,7 +254,7 @@ namespace MonoShooterTest
                     }
                 }
 
-                for (int i = MissileList.Count - 1; i >= 0; i--)
+                for (int i = MissileList.Count - 1; i >= 0 && !Removed && EnemyList[j].Type != 1; i--)
                 {
                     if (Collision.IsIntersecting(MissileList[i].OldPosition + new Vector2(0, 4), MissileList[i].Position + new Vector2(0, 4), EnemyList[j].Position,
                         EnemyList[j].Position + new Vector2(0, 20)))

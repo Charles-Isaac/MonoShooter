@@ -23,3 +23,5 @@ C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\Mon
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Audio\Explosion.xnb
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Enemy\Asteroid.xnb
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Enemy\Explosion.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Bullet\Missile.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Player\Crosshair.xnb
