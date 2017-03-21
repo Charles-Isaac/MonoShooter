@@ -20,3 +20,6 @@ C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\Mon
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Debug\Content\Audio\Shooting.ogg
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Debug\Content\Audio\Shooting.xnb
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Debug\Content\Font\Font.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Debug\Content\Texture\Enemy\Asteroid.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Debug\Content\Texture\Enemy\Explosion.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Debug\Content\Audio\Explosion.xnb

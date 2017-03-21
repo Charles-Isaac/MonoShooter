@@ -15,5 +15,8 @@
     <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Audio/Dark Clouds - Bio Metal.mp3</File>
     <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Audio/Shooting.mp3</File>
     <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Font/Font.spritefont</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Enemy/Asteroid.png</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Enemy/Explosion.png</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Audio/Explosion.wav</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -12,6 +12,8 @@ namespace MonoShooterTest
         private int m_TransitionStartTime;
         private int m_CurrentTime;
         private Vector2 m_StartPosition;
+
+        private Vector2 m_OldPosition;
         private int m_RightMargin;
 
         public Bullet(int TransitionStartTime, Vector2 Position, int RightMargin)
@@ -20,6 +22,8 @@ namespace MonoShooterTest
             m_CurrentTime = TransitionStartTime;
             m_StartPosition = Position;
             m_RightMargin = RightMargin;
+
+            m_OldPosition = Position;
         }
 
         public bool Update(int NewCurrentTime)
@@ -38,13 +42,18 @@ namespace MonoShooterTest
 
         public Vector2 Position
         {
-            get { return m_StartPosition + new Vector2(0.8f *(m_CurrentTime - m_TransitionStartTime), 0); }
+            get { return m_StartPosition + new Vector2(0.6f *(m_CurrentTime - m_TransitionStartTime), 0); }
         }
 
         public int CurrentTime
         {
             get { return m_CurrentTime; }
             set { m_CurrentTime = value; }
+        }
+        public Vector2 OldPosition
+        {
+            get { return m_OldPosition; }
+            set { m_OldPosition = value; }
         }
     }
 }
