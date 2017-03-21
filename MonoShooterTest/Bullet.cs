@@ -32,17 +32,13 @@ namespace MonoShooterTest
         {
             get
             {
-                if (((m_CurrentTime - m_TransitionStartTime) / 100) % 4 > 4 || ((m_CurrentTime - m_TransitionStartTime) / 100) % 4 < 0)
-                {
-                    int i = 0;
-                }
                 return (((m_CurrentTime - m_TransitionStartTime) / 100) % 4);
             }
         }
 
         public Vector2 Position
         {
-            get { return m_StartPosition + new Vector2(0.3f *(m_CurrentTime - m_TransitionStartTime), 0); }
+            get { return m_StartPosition + new Vector2(0.8f *(m_CurrentTime - m_TransitionStartTime), 0); }
         }
 
         public int CurrentTime

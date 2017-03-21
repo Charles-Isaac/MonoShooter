@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+
 
 namespace MonoShooterTest
 {
@@ -16,9 +20,15 @@ namespace MonoShooterTest
         private Texture2D[] PlayerTexture;
         private Texture2D[] BulletTexture;
         private Texture2D StarTexture;
+        private SpriteFont font;
         private Vector2 PlayerPosition;
         private List<Bullet> BulletList;
+        private SoundEffect ShootingSound;
         private int PlayerLastShot;
+        private int lastFPS= 0;
+
+        private int FPSCounter = 60;
+        private double FPSElapsed = 0;
 
         public Shooter()
         {
@@ -77,6 +87,14 @@ namespace MonoShooterTest
             BulletTexture[3] = Content.Load<Texture2D>("Texture/Bullet/Bullet4");
 
             StarTexture = Content.Load<Texture2D>("Texture/Background/StarBackground");
+
+            Song song = Content.Load<Song>("Audio/Dark Clouds - Bio Metal");  // Put the name of your song here instead of "song_title"
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(song);
+
+            ShootingSound = Content.Load<SoundEffect>("Audio/Shooting");
+
+            font = Content.Load<SpriteFont>("Font/Font");
         }
 
         /// <summary>
@@ -106,25 +124,25 @@ namespace MonoShooterTest
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.W))
                 {
-                    PlayerPosition += new Vector2(0, -0.1f * gameTime.ElapsedGameTime.Milliseconds);
+                    PlayerPosition += new Vector2(0, -0.3f * gameTime.ElapsedGameTime.Milliseconds);
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.A))
                 {
-                    PlayerPosition += new Vector2(-0.1f * gameTime.ElapsedGameTime.Milliseconds, 0);
+                    PlayerPosition += new Vector2(-0.2f * gameTime.ElapsedGameTime.Milliseconds, 0);
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.S))
                 {
-                    PlayerPosition += new Vector2(0, 0.1f * gameTime.ElapsedGameTime.Milliseconds);
+                    PlayerPosition += new Vector2(0, 0.3f * gameTime.ElapsedGameTime.Milliseconds);
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.D))
                 {
-                    PlayerPosition += new Vector2(0.1f * gameTime.ElapsedGameTime.Milliseconds, 0);
+                    PlayerPosition += new Vector2(0.2f * gameTime.ElapsedGameTime.Milliseconds, 0);
                 }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Space) && gameTime.TotalGameTime.TotalMilliseconds - PlayerLastShot > 500)
+                if (Keyboard.GetState().IsKeyDown(Keys.Space) && gameTime.TotalGameTime.TotalMilliseconds - PlayerLastShot > 250)
                 {
                     PlayerLastShot = (int) gameTime.TotalGameTime.TotalMilliseconds;
                     BulletList.Add(new Bullet((int) gameTime.TotalGameTime.TotalMilliseconds,
@@ -132,6 +150,8 @@ namespace MonoShooterTest
                         new Vector2(PlayerTexture[(gameTime.TotalGameTime.Milliseconds/250)%4].Width - 6,
                             PlayerTexture[(gameTime.TotalGameTime.Milliseconds/250)%4].Height/2.0f),
                         GraphicsDevice.PresentationParameters.BackBufferWidth + 10));
+                    ShootingSound.Play();
+                    
                 }
             }
 
@@ -151,12 +171,24 @@ namespace MonoShooterTest
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            FPSCounter++;
+            
+
+
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
             
             spriteBatch.Begin();
 
+            if (gameTime.TotalGameTime.TotalMilliseconds - FPSElapsed > 1000)
+            {
+                lastFPS = (int)(FPSCounter/((gameTime.TotalGameTime.TotalMilliseconds - FPSElapsed)/1000));
+                
+                FPSElapsed = gameTime.TotalGameTime.TotalMilliseconds;
+                FPSCounter = 1;
+            }
+            
             for (int i = 0; i < 2; i++)
             {
                 spriteBatch.Draw(StarTexture,
@@ -180,6 +212,9 @@ namespace MonoShooterTest
                         BulletTexture[BulletList[i].Transition].Width, BulletTexture[BulletList[i].Transition].Height),
                     Color.White);
             }
+
+            spriteBatch.DrawString(font, "FPS: " + lastFPS, new Vector2(10, 10), Color.Yellow);
+
             spriteBatch.End();
             base.Draw(gameTime);
         }

@@ -109,3 +109,21 @@
 /processorParam:TextureFormat=Color
 /build:Texture/Background/StarBackground.png
 
+#begin Audio/Dark Clouds - Bio Metal.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/Dark Clouds - Bio Metal.mp3
+
+#begin Audio/Shooting.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Shooting.mp3
+
+#begin Font/Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Font/Font.spritefont
+
