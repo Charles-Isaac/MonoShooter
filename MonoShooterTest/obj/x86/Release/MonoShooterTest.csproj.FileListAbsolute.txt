@@ -1,0 +1,16 @@
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Background\StarBackground.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Bullet\Bullet1.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Bullet\Bullet2.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Bullet\Bullet3.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Bullet\Bullet4.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Player\Player1.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Player\Player2.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Texture\Player\Player3.xnb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\OpenTK.dll.config
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\MonoShooterTest.exe
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\MonoShooterTest.pdb
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\MonoGame.Framework.dll
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\NVorbis.dll
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\OpenTK.dll
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\obj\x86\Release\MonoShooterTest.exe
+C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\obj\x86\Release\MonoShooterTest.pdb

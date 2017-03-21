@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoShooterTest", "MonoShooterTest\MonoShooterTest.csproj", "{76C4F741-E2F4-49B4-AAC3-59DE9EB89EAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76C4F741-E2F4-49B4-AAC3-59DE9EB89EAE}.Debug|x86.ActiveCfg = Debug|x86
+		{76C4F741-E2F4-49B4-AAC3-59DE9EB89EAE}.Debug|x86.Build.0 = Debug|x86
+		{76C4F741-E2F4-49B4-AAC3-59DE9EB89EAE}.Release|x86.ActiveCfg = Release|x86
+		{76C4F741-E2F4-49B4-AAC3-59DE9EB89EAE}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = edf8c0a1-5620-47b8-9c0c-0546374c42ee
+	EndGlobalSection
+EndGlobal

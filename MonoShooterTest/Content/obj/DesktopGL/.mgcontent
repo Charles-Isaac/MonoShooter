@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Bullet/Bullet1.png</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Bullet/Bullet2.png</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Bullet/Bullet3.png</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Bullet/Bullet4.png</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Player/Player2.png</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Player/Player3.png</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Player/Player1.png</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Background/StarBackground.png</File>
+  </SourceFiles>
+</SourceFileCollection>
