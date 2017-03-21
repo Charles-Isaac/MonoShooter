@@ -54,7 +54,7 @@ namespace MonoShooterTest
 
         public Vector2 Position
         {
-            get { return m_StartPosition + new Vector2(-0.8f * (m_CurrentTime - m_TransitionStartTime), 0); }
+            get { return m_StartPosition + new Vector2(-0.1f * (m_CurrentTime - m_TransitionStartTime), 0); }
         }
 
         public int ExplosionStartTime

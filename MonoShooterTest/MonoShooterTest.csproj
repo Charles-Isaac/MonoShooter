@@ -41,6 +41,7 @@
     <Compile Include="Bullet.cs" />
     <Compile Include="Collision.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="Missile.cs" />
     <Compile Include="Shooter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

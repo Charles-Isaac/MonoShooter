@@ -18,5 +18,7 @@
     <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Enemy/Asteroid.png</File>
     <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Enemy/Explosion.png</File>
     <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Audio/Explosion.wav</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Bullet/Missile.png</File>
+    <File>C:/Users/Charles-Isaac/Documents/Visual Studio 2015/Projects/MonoShooterTest/MonoShooterTest/Content/Texture/Player/Crosshair.png</File>
   </SourceFiles>
 </SourceFileCollection>
