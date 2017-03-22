@@ -15,9 +15,10 @@ namespace MonoShooterTest
 
         private Vector2 m_OldPosition;
         private int m_RightMargin;
-
+        private Random RNG;
         public Bullet(int TransitionStartTime, Vector2 Position, int RightMargin)
         {
+            RNG = new Random(TransitionStartTime);
             m_TransitionStartTime = TransitionStartTime;
             m_CurrentTime = TransitionStartTime;
             m_StartPosition = Position;
@@ -42,7 +43,12 @@ namespace MonoShooterTest
 
         public Vector2 Position
         {
-            get { return m_StartPosition + new Vector2(0.6f *(m_CurrentTime - m_TransitionStartTime), 0); }
+            get
+            {
+                return m_StartPosition +
+                       new Vector2(0.6f*(m_CurrentTime - m_TransitionStartTime),
+                           (float) Math.Sin(0.02f*m_CurrentTime + m_TransitionStartTime)*5);
+            }
         }
 
         public int CurrentTime

@@ -49,12 +49,14 @@ namespace MonoShooterTest
 
         public Shooter()
         {
-            graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this)
+            {
+                IsFullScreen = true,
+                PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
+                PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
+            };
 
-            graphics.IsFullScreen = true;
 
-            graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             graphics.ApplyChanges();
 
           //  graphics.ToggleFullScreen();
@@ -118,6 +120,7 @@ namespace MonoShooterTest
 
             Song song = Content.Load<Song>("Audio/Dark Clouds - Bio Metal");  // Put the name of your song here instead of "song_title"
             MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.5f;
             MediaPlayer.Play(song);
             ShootingSound = Content.Load<SoundEffect>("Audio/Shooting");
             ExplosionSound = Content.Load<SoundEffect>("Audio/Explosion");
@@ -188,30 +191,43 @@ namespace MonoShooterTest
                         new Vector2(PlayerTexture[(gameTime.TotalGameTime.Milliseconds/250)%4].Width - 6,
                             PlayerTexture[(gameTime.TotalGameTime.Milliseconds/250)%4].Height/2.0f),
                         GraphicsDevice.PresentationParameters.BackBufferWidth + 10));
-                    ShootingSound.Play(0.8f, 1,0);
+                    ShootingSound.Play(0.5f, 1,0);
                 }
-                if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Mouse.GetState().LeftButton == ButtonState.Pressed) && gameTime.TotalGameTime.TotalMilliseconds - MissileLastShot > 500)
+                if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Mouse.GetState().LeftButton == ButtonState.Pressed) && gameTime.TotalGameTime.TotalMilliseconds - MissileLastShot > 490)
                 {
                     MissileLastShot = (int)gameTime.TotalGameTime.TotalMilliseconds;
                     MissileList.Add(new Missile((int)gameTime.TotalGameTime.TotalMilliseconds,
                         PlayerPosition +
                         new Vector2(PlayerTexture[(gameTime.TotalGameTime.Milliseconds / 250) % 4].Width - 6,
-                            PlayerTexture[(gameTime.TotalGameTime.Milliseconds / 250) % 4].Height / 2.0f), new Vector2(1,1), 
+                            PlayerTexture[(gameTime.TotalGameTime.Milliseconds / 250) % 4].Height / 2.0f), new Vector2(1,0.5f), 
                         new Rectangle(-10,-10, GraphicsDevice.PresentationParameters.BackBufferWidth + 20, GraphicsDevice.PresentationParameters.BackBufferHeight + 20)));
 
                     MissileList.Add(new Missile((int)gameTime.TotalGameTime.TotalMilliseconds,
                         PlayerPosition +
                         new Vector2(PlayerTexture[(gameTime.TotalGameTime.Milliseconds / 250) % 4].Width - 6,
-                            PlayerTexture[(gameTime.TotalGameTime.Milliseconds / 250) % 4].Height / 2.0f), new Vector2(1, -1),
+                            PlayerTexture[(gameTime.TotalGameTime.Milliseconds / 250) % 4].Height / 2.0f), new Vector2(1, -0.5f),
                         new Rectangle(-10, -10, GraphicsDevice.PresentationParameters.BackBufferWidth + 20, GraphicsDevice.PresentationParameters.BackBufferHeight + 20)));
-                    ShootingSound.Play(0.8f, 1, 0);
+                    ShootingSound.Play(0.5f, 1, 0);
+
+             /*       MissileList.Add(new Missile((int)gameTime.TotalGameTime.TotalMilliseconds,
+                        PlayerPosition +
+                        new Vector2(PlayerTexture[(gameTime.TotalGameTime.Milliseconds / 250) % 4].Width - 6,
+                            PlayerTexture[(gameTime.TotalGameTime.Milliseconds / 250) % 4].Height / 2.0f), new Vector2(1, 0),
+                        new Rectangle(-10, -10, GraphicsDevice.PresentationParameters.BackBufferWidth + 20, GraphicsDevice.PresentationParameters.BackBufferHeight + 20)));
+                    ShootingSound.Play(0.5f, 1, 0);*/
                 }
 
             }
             if (gameTime.TotalGameTime.TotalMilliseconds - EnemyLastSpawn > 100)
             {
                 EnemyLastSpawn = (int)gameTime.TotalGameTime.TotalMilliseconds;
-                EnemyList.Add(new Enemy(0, new Vector2(GraphicsDevice.PresentationParameters.BackBufferWidth + 10, RNG.Next(GraphicsDevice.PresentationParameters.BackBufferHeight - 20)), (int)gameTime.TotalGameTime.TotalMilliseconds, -10));
+                EnemyList.Add(new Enemy(0,
+                    new Vector2(GraphicsDevice.PresentationParameters.BackBufferWidth + 5,
+                        RNG.Next(GraphicsDevice.PresentationParameters.BackBufferHeight - 20)),
+                    (int) gameTime.TotalGameTime.TotalMilliseconds,
+                    new Rectangle(-10, -10, GraphicsDevice.PresentationParameters.BackBufferWidth + 20,
+                        GraphicsDevice.PresentationParameters.BackBufferHeight),
+                    new Vector2(-RNG.Next(25)/250.0f - 0.1f, (RNG.Next(25) - 12.5f)/250.0f)));
             }
             for (int i = BulletList.Count - 1; i >= 0; i--)
             {
@@ -226,10 +242,37 @@ namespace MonoShooterTest
             Vector2 mp = Mouse.GetState().Position.ToVector2();
             for (int i = MissileList.Count - 1; i >= 0; i--)
             {
-
-                if (MissileList[i].Update((int)gameTime.TotalGameTime.TotalMilliseconds, mp))
+                float Lenght = float.MaxValue;
+                int TargetIndex = 0;
+                for (int j = 0; j < EnemyList.Count; j++)
                 {
-                    MissileList.RemoveAt(i);
+                    float glu = 0.1f;
+                    if (EnemyList[j].Type != 1 &&((MissileList[i].Position + MissileList[i].Velocity * glu - EnemyList[j].Position) + new Vector2(Math.Abs((MissileList[i].Position + MissileList[i].Velocity * glu - EnemyList[j].Position).X) / 1.5f,0)).LengthSquared() < Lenght)
+                    {
+                        Lenght =
+                        ((MissileList[i].Position + MissileList[i].Velocity* glu - EnemyList[j].Position) +
+                         new Vector2(
+                             Math.Abs(
+                                 (MissileList[i].Position + MissileList[i].Velocity* glu - EnemyList[j].Position).X)/
+                             2, 0)).LengthSquared();
+                        TargetIndex = j;
+                    }
+                }
+                if (EnemyList.Count > 0)
+                {
+                    float adv = 10;
+                    if (MissileList[i].Update((int) gameTime.TotalGameTime.TotalMilliseconds,
+                        EnemyList[TargetIndex].Position + EnemyList[TargetIndex].Velocity*(float)Math.Sqrt(Lenght)/ adv))
+                    {
+                        MissileList.RemoveAt(i);
+                    }
+                }
+                else
+                {
+                    if (MissileList[i].Update((int)gameTime.TotalGameTime.TotalMilliseconds,mp))
+                    {
+                        MissileList.RemoveAt(i);
+                    }
                 }
 
             }
@@ -241,12 +284,13 @@ namespace MonoShooterTest
                 bool Removed = false;
                 for (int i = BulletList.Count - 1; i >= 0 && !Removed && EnemyList[j].Type != 1; i--)
                 {
-                    if (Collision.IsIntersecting(BulletList[i].OldPosition + new Vector2(0, 4), BulletList[i].Position + new Vector2(0, 4), EnemyList[j].Position,
+                    if (Collision.IsIntersecting(BulletList[i].OldPosition + new Vector2(0, 4),
+                        BulletList[i].Position + new Vector2(0, 4), EnemyList[j].Position,
                         EnemyList[j].Position + new Vector2(0, 20)))
                     {
                         BulletList.RemoveAt(i);
                         //EnemyList.RemoveAt(j);
-                        EnemyList[j].ExplosionStartTime = (int)gameTime.TotalGameTime.TotalMilliseconds;
+                        EnemyList[j].ExplosionStartTime = (int) gameTime.TotalGameTime.TotalMilliseconds;
                         EnemyList[j].Type = 1;
                         ExplosionSound.Play();
                         Point++;
@@ -256,31 +300,36 @@ namespace MonoShooterTest
 
                 for (int i = MissileList.Count - 1; i >= 0 && !Removed && EnemyList[j].Type != 1; i--)
                 {
-                    if (Collision.IsIntersecting(MissileList[i].OldPosition + new Vector2(0, 4), MissileList[i].Position + new Vector2(0, 4), EnemyList[j].Position,
+                    if (Collision.IsIntersecting(MissileList[i].OldPosition + new Vector2(0, 4),
+                        MissileList[i].Position + new Vector2(0, 4), EnemyList[j].Position,
                         EnemyList[j].Position + new Vector2(0, 20)))
                     {
                         MissileList.RemoveAt(i);
                         //EnemyList.RemoveAt(j);
-                        EnemyList[j].ExplosionStartTime = (int)gameTime.TotalGameTime.TotalMilliseconds;
+                        EnemyList[j].ExplosionStartTime = (int) gameTime.TotalGameTime.TotalMilliseconds;
                         EnemyList[j].Type = 1;
                         ExplosionSound.Play();
                         Point++;
                         Removed = true;
                     }
                 }
-                if (!Removed && EnemyList[j].Update((int)gameTime.TotalGameTime.TotalMilliseconds))
+                if (!Removed && EnemyList[j].Update((int) gameTime.TotalGameTime.TotalMilliseconds))
                 {
                     EnemyList.RemoveAt(j);
                     Removed = true;
                 }
                 for (int i = BulletList.Count - 1; !Removed && i >= 0 && EnemyList[j].Type != 1; i--)
                 {
-                    if (Collision.IsIntersecting(BulletList[i].OldPosition + new Vector2(0, 4), BulletList[i].Position + new Vector2(0, 4),
-                        EnemyList[j].Position, EnemyList[j].Position + new Vector2(0, 20)))
+                    if (Collision.IsIntersecting(BulletList[i].OldPosition + new Vector2(0, 4),
+                            BulletList[i].Position + new Vector2(0, 4),
+                            EnemyList[j].Position + new Vector2(15, 0), EnemyList[j].Position + new Vector2(15, 30)) ||
+                        Collision.IsIntersecting(BulletList[i].OldPosition + new Vector2(0, 4),
+                            BulletList[i].Position + new Vector2(0, 4),
+                            EnemyList[j].Position + new Vector2(0, 15), EnemyList[j].Position + new Vector2(30, 15)))
                     {
                         BulletList.RemoveAt(i);
                         //   EnemyList.RemoveAt(j);
-                        EnemyList[j].ExplosionStartTime = (int)gameTime.TotalGameTime.TotalMilliseconds;
+                        EnemyList[j].ExplosionStartTime = (int) gameTime.TotalGameTime.TotalMilliseconds;
                         EnemyList[j].Type = 1;
                         ExplosionSound.Play();
                         Point++;
@@ -290,12 +339,16 @@ namespace MonoShooterTest
 
                 for (int i = MissileList.Count - 1; !Removed && i >= 0 && EnemyList[j].Type != 1; i--)
                 {
-                    if (Collision.IsIntersecting(MissileList[i].OldPosition + new Vector2(0, 4), MissileList[i].Position + new Vector2(0, 4),
-                        EnemyList[j].Position, EnemyList[j].Position + new Vector2(0, 20)))
+                    if (Collision.IsIntersecting(MissileList[i].OldPosition + new Vector2(0, 4),
+                            MissileList[i].Position + new Vector2(0, 4),
+                            EnemyList[j].Position + new Vector2(15, 0), EnemyList[j].Position + new Vector2(15, 30)) ||
+                        Collision.IsIntersecting(MissileList[i].OldPosition + new Vector2(0, 4),
+                            MissileList[i].Position + new Vector2(0, 4),
+                            EnemyList[j].Position + new Vector2(0, 15), EnemyList[j].Position + new Vector2(30, 15)))
                     {
                         MissileList.RemoveAt(i);
                         //   EnemyList.RemoveAt(j);
-                        EnemyList[j].ExplosionStartTime = (int)gameTime.TotalGameTime.TotalMilliseconds;
+                        EnemyList[j].ExplosionStartTime = (int) gameTime.TotalGameTime.TotalMilliseconds;
                         EnemyList[j].Type = 1;
                         ExplosionSound.Play();
                         Point++;
@@ -305,10 +358,15 @@ namespace MonoShooterTest
                 if (EnemyList[j].Type != 1)
                 {
                     if (Collision.IsIntersecting(PlayerPosition,
-                        PlayerPosition +
-                        new Vector2(PlayerTexture[(int) (gameTime.TotalGameTime.TotalMilliseconds/150)%4].Width,
-                            PlayerTexture[(int) (gameTime.TotalGameTime.TotalMilliseconds/150)%4].Height),
-                        EnemyList[j].Position, EnemyList[j].Position + new Vector2(0, 20)))
+                            PlayerPosition +
+                            new Vector2(PlayerTexture[(int) (gameTime.TotalGameTime.TotalMilliseconds/150)%4].Width,
+                                PlayerTexture[(int) (gameTime.TotalGameTime.TotalMilliseconds/150)%4].Height),
+                            EnemyList[j].Position + new Vector2(15, 0), EnemyList[j].Position + new Vector2(15, 30)) ||
+                        Collision.IsIntersecting(PlayerPosition,
+                            PlayerPosition +
+                            new Vector2(PlayerTexture[(int) (gameTime.TotalGameTime.TotalMilliseconds/150)%4].Width,
+                                PlayerTexture[(int) (gameTime.TotalGameTime.TotalMilliseconds/150)%4].Height),
+                            EnemyList[j].Position + new Vector2(0, 15), EnemyList[j].Position + new Vector2(30, 15)))
                     {
                         Died();
                     }
@@ -322,7 +380,17 @@ namespace MonoShooterTest
                                 PlayerPosition +
                                 new Vector2(
                                     PlayerTexture[(int) (gameTime.TotalGameTime.TotalMilliseconds/150)%4].Width, 0),
-                                EnemyList[j].Position, EnemyList[j].Position + new Vector2(0, 20)))
+                                EnemyList[j].Position + new Vector2(15, 0), EnemyList[j].Position + new Vector2(15, 30)) ||
+                            Collision.IsIntersecting(PlayerPosition +
+                                                     new Vector2(0,
+                                                         PlayerTexture[
+                                                                 (int) (gameTime.TotalGameTime.TotalMilliseconds/150)%4]
+                                                             .Height),
+                                PlayerPosition +
+                                new Vector2(
+                                    PlayerTexture[(int) (gameTime.TotalGameTime.TotalMilliseconds/150)%4].Width, 0),
+                                EnemyList[j].Position + new Vector2(0, 15), EnemyList[j].Position + new Vector2(30, 15)))
+
                         {
                             Died();
                         }

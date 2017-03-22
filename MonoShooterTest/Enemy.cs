@@ -29,20 +29,28 @@ namespace MonoShooterTest
         private int m_CurrentTime;
         private int m_ExplosionStartTime;
         private int m_TransitionStartTime;
-        private int m_LeftMargin;
-        public Enemy(int Type, Vector2 Position, int StartTime, int LeftMargin)
+        private Rectangle m_Margins;
+        private Vector2 m_Velocity;
+        public Enemy(int Type, Vector2 Position, int StartTime, Rectangle Margins, Vector2 Velocity)
         {
             m_Type = Type;
             m_StartPosition = Position;
             m_CurrentTime = StartTime;
             m_TransitionStartTime = StartTime;
-            m_LeftMargin = LeftMargin;
+            m_Margins = Margins;
+            m_Velocity = Velocity;
         }
 
         public bool Update(int NewCurrentTime)
         {
             m_CurrentTime = NewCurrentTime;
-            return (Position.X <= m_LeftMargin);
+            if (Position.Y < m_Margins.Top || Position.Y > m_Margins.Height + m_Margins.Top)
+            {
+                m_StartPosition = Position;
+                m_Velocity.Y = -m_Velocity.Y;
+                m_TransitionStartTime = m_CurrentTime;
+            }
+            return (Position.X < m_Margins.Left || Position.X > m_Margins.Width + m_Margins.Left);
         }
 
 
@@ -54,13 +62,24 @@ namespace MonoShooterTest
 
         public Vector2 Position
         {
-            get { return m_StartPosition + new Vector2(-0.1f * (m_CurrentTime - m_TransitionStartTime), 0); }
+            get
+            {
+                return m_StartPosition +
+                       new Vector2(m_Velocity.X*(m_CurrentTime - m_TransitionStartTime),
+                           m_Velocity.Y*(m_CurrentTime - m_TransitionStartTime));
+            }
         }
 
         public int ExplosionStartTime
         {
             get { return m_ExplosionStartTime; }
             set { m_ExplosionStartTime = value; }
+        }
+
+        public Vector2 Velocity
+        {
+            get { return m_Velocity; }
+            set { m_Velocity = value; }
         }
     }
 }

@@ -12,7 +12,6 @@ C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\Mon
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\MonoGame.Framework.dll
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\NVorbis.dll
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\OpenTK.dll
-C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\obj\x86\Release\MonoShooterTest.csprojResolveAssemblyReference.cache
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\obj\x86\Release\MonoShooterTest.exe
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\obj\x86\Release\MonoShooterTest.pdb
 C:\Users\Charles-Isaac\Documents\Visual Studio 2015\Projects\MonoShooterTest\MonoShooterTest\bin\DesktopGL\x86\Release\Content\Audio\Dark Clouds - Bio Metal.ogg

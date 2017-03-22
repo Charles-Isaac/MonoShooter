@@ -34,8 +34,12 @@ namespace MonoShooterTest
             Target.Normalize();
             m_Velocity += Target * Delta / 100.0f;
             m_OldPosition = m_Position;
+            
+            if (m_Velocity.Length() > 75)
+            {
+                m_Velocity /= m_Velocity.Length() / 75;
+            }
             m_Position += m_Velocity;
-
             return (m_Position.X < m_Margins.Left || m_Position.X > m_Margins.Width + m_Margins.Left || m_Position.Y < m_Margins.Top || m_Position.Y > m_Margins.Height + m_Margins.Top);
 
         }
